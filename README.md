@@ -64,7 +64,7 @@ the factory method is usually used when creating frameworks, which standadize th
 
 a Factory is a creator of objects that have a common interface.
 
-## abstrac factory
+## abstract factory
 
 the abstract factory is a creational pattern, similar to the factory method patetern, with the key difference being that abstract factory privides and interface for creating families of related or dependent objects without specifing their concrete classes.
 
@@ -184,6 +184,96 @@ other examples are menus that contain menu items, each of which could be a menu.
 the key concept is that you can manipulate a single instance of the object just as yo would manipulate a group of them.
 
 ## decorator
+
+the decorator design pattern allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class.
+
+this is achieved by designing a new decorator class that wraps the original class. this pattern is designed so that multiple decorators can be stacked on top of each other, each adding a new functionality.
+
+the goal is to mkae it so that the extended behavior can be applied to one specific instance, and, at the same time, still be able to create an original instance that doesn't have the new behavior.
+
+this pattern is an alternative to subclassing, which refers to creating a class that inherits functioanlity from a parent class. as opposed to subclassing, which adds the behavior at compile time, "decorating" allows you to add new behavior during runtime, if the situation calls for it.
+
+for example, consider a window in a windowing system. assume windows are represented y instances of the window class, and assume this class has no functionality for adding scrollbars.
+
+we could create a subclass scrollingwindow that provides them, or create a scrollingwindowdecorator that add this functionality to existing window objects. at this poin, either solution would be fine.
+
+now, assume one also desires the ability to add borders to windows. if we had used subclassing then we have a problem , as we will need to create separate subclasses with the borders functionality for all possible types of windows.
+
+with the decorator, we have the ability to add scrollbars and/or borders to any of our windows objects.
+
+notice that if the functionality needs to be added to all windows, you could modify the base class and that will do. however, sometimes (e.g., when using external frameworks) it is not possible, legal, or convenient to modify the base classs.
+
+the I/O streams implementations of both Java and the .NET framework follow the decorator pattern by exteding the base subclass to add features to the stream classes.
+
+## facade
+
+the facade design pattern provides a unified interface to a set of interfaces in a subsystem, thus making a complex subsystem easier to use.
+
+a facade is an object that provides a simplified interface to a larger body of code, such as a class library.
+
+a facade can:
+
+- make a software library easier to use, understand, and test, since the facade has convenient methos for common tasks,
+
+- make the library more readable, 
+
+- wrap a poorly designed collection of APIs with a single well-designed API.
+
+The facade design pattern is often used when a system is very complex or difficult to understand because the system has a large number of interdependent classes or its source code is unavailable. this pattern hides the complexities of the larger system and provides a simpler interface to the client. it typically involves a single wrapper class that contains a set of members required by the client.
+
+these members access the system on behalf of the facade client and hide the implementations details.
+
+the # in jquery, which provides a simple interface to common operations, is an example of the facade design pattern.
+
+adapter and facade are both wrappers, but they are different kinds of wrappers. the intent of facede is to produce a simpler interface, and the intent of adapter is to design an existing interface.
+
+## flyweight 
+
+the flyweight design pattern efficiently supports a large number of objects.
+
+a flyweight is an object that minimizes memory usage by sharing as much data as possible with other similar objects; it is a way to use objects in large numbers when a simple repeated representation would use an unacceptable amount of memory.
+
+for example, when representing large teext documents, creating an object for each character in the document would result in a huge number of objects that could'nt be processed efficiently. insted, for every character there might be a reference to a flyweight glyph object shared by every isntance of the same character in the document; only the position of each ccharacter in the document would need to be stored internally.
+
+as another example, modern web browsers use this technique to prevent loading the same images twich. when browser loads a web page, it traverses throught all images on that page. the browser loads all new images an places them in the internal cache.
+
+for already loaded images, a flyweight object is created, which has some unique data-like position whithin the page, but the image itself is referenced from the cache.
+
+to enable safe sharing between clients and threads, flyweight objects must be immutable.
+
+flyweight objects are by definition value objects. the identity of the object instance is of no consequence; therefore, two flyweight equal.
+
+## proxy
+
+the proxy design pattern provides a placeholder for another object to control access to it.
+
+a proxy is a class functionaning as an interface to something else, such as a network connection, a large object in memory, a file, or some other resource that is expensive or impossible to duplicate.
+
+a proxy acts as a wrapper object that is being called by the client to access the real serving object behind the scenes. for the client, usage of a proxy object is similar to using the real object, because both implement the same interface.
+
+possible usage scenarios.
+
+### remote proxy
+
+in distributed object communication, a local object represents a remote object. the local object is a proxy for the remote object, and method invocation on the local object results in remote method invocation on the remote object. an example would be an atm implementation, where the atm might hold proxy objects for bank information that exists in the remote server.
+
+### virtual proxy
+
+in place of a complex or heavy object, a skeleton representation may be advantageous in some cases.
+
+when an underlying images is huge in size, it may be represented using a virtual proxy object, loading the real object on demand.
+
+### protection proxy
+
+a protection proxy might be used to control access to a resource based on access rights.
+
+a proxy can:
+
+- hide information about the real object form the client.
+
+- perform optimization like on-demand loading.
+
+- do additional housekeeping jobs like audit tasks.
 
 
 

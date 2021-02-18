@@ -169,3 +169,21 @@ adapter makes things work after they're designed; bridge is designed up-front to
 in other words, an adapter is a patch. a bridge is put in place on purpose.
 
 
+## composite
+
+the composite pattern describes a group of objects that is treated the same way as a single instance of the same type of object.
+
+composite should be used when clients ignore the difference between compositions of objects and individual objects.
+
+for example, when dealing with tree-structured data, programmers often must discrimate between a leaf-node and a branch. this makes code more complex, and therefore, more error-prone.
+
+the solution is an interface that allows treating complex and primitive objects uniformly.
+
+other examples are menus that contain menu items, each of which could be a menu. directories that containe files, each of which could be a directory.
+
+the key concept is that you can manipulate a single instance of the object just as yo would manipulate a group of them.
+
+## decorator
+
+
+

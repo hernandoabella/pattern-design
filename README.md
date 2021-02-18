@@ -140,10 +140,32 @@ you could create a shape interface, inherit from it the types of the shapes, lik
 the class hierarchy would look like this:
 
                     
-                  shape
+                        shape
               rectangle         circle
               
           winrect marcrect   wincircle maccircle
           
+now, consider that you need to support more shape types and more OSes. that would lead to a significant number of classes being 0added - the number of types multiplied by the numer of OS versions.
+
+so, basicallly, to support five shape types on three different OSes, you would need to write 5*3=15 implementations.
+
+however, the bridge pattern suggets refactoring this into two separate hierarchies - one for platform-independent abstractions (shapes), and the other for platform-dependent implementations (Oses).
+
+here is a refactored diagram:
+
+      shape                  shapeimplementation
+      
+ rectangle  circle      windows             macos     
           
+          
+the relationship between shape and shapeimplementation is the bridge.
+
+this pattern is used in situations where it would be best to isolate the handling of the system-dependent stuff from the handling of the system-independent stuff.
+
+the bridge pattern is oftten confused with the adapter pattern.
+
+adapter makes things work after they're designed; bridge is designed up-front to let the abstracction and the implementation vary independently. further, adapter is retrofitted to make unrelated classes work together. 
+
+in other words, an adapter is a patch. a bridge is put in place on purpose.
+
 
